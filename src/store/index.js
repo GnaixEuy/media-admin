@@ -1,17 +1,23 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
+import user from './modules/user.js';
+import { setCurrentUser, setToken } from '../utils/auth.js';
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
-  },
-  getters: {
-  },
+  state: {},
+  getters: {},
   mutations: {
+    SET_TOKEN(token) {
+      setToken(token);
+    },
+    SET_CURRENT_USER(currenUser) {
+      setCurrentUser(currenUser);
+    },
   },
-  actions: {
-  },
+  actions: {},
   modules: {
-  }
-})
+    user,
+  },
+});
