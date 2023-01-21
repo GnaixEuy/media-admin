@@ -1,7 +1,7 @@
 <template>
     <div style="height: 100vh;">
         <el-menu class="sidebar-el-menu" :default-openeds="openeds" router @open="handleOpen" @close="handleClose"
-            background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
+            background-color="#545c64" text-color="#fff" active-text-color="#ad90da">
             <el-submenu index="1">
                 <template slot="title">
                     <i class="el-icon-location"></i>
@@ -13,21 +13,11 @@
                         <i class="el-icon-video-camera"></i>
                         <span slot="title">视屏管理</span>
                     </el-menu-item>
-                    <el-menu-item index="1-3">推荐管理</el-menu-item>
+                    <el-menu-item index="RecommendManager">
+                        <i class="el-icon-s-flag"></i>
+                        <span slot="title">推荐管理</span>
+                    </el-menu-item>
                 </el-menu-item-group>
-                <el-menu-item-group>
-                    <template slot="title">商城业务</template>
-                    <el-menu-item index="1-3" disabled>商品审核</el-menu-item>
-                    <el-menu-item index="1-4" disabled>商户审核</el-menu-item>
-                    <el-menu-item index="1-5" disabled>商品推荐管理</el-menu-item>
-                </el-menu-item-group>
-                <el-menu-item-group>
-                    <template slot="title">音乐业务</template>
-                    <el-menu-item index="1-3" disabled>音乐审核</el-menu-item>
-                    <el-menu-item index="1-4" disabled>音乐人审批</el-menu-item>
-                    <el-menu-item index="1-5" disabled>音乐会员业务管理</el-menu-item>
-                </el-menu-item-group>·
-
             </el-submenu>
 
             <el-menu-item index="UserManager">
@@ -69,7 +59,6 @@ export default {
 <style scoped>
 .sidebar-el-menu:not(.el-menu--collapse) {
     height: 100%;
-
 }
 
 .sidebar-el-menu {

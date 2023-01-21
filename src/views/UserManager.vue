@@ -71,11 +71,7 @@ export default {
     name: "UserManager",
     data() {
         return {
-            allUserList: [{
-                date: '2016-05-03',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1518 弄'
-            }],
+            allUserList: [],
             selectedUserList: [],
             pageNo: 1,      // 默认当前是第一页
             pageSize: 5,    // 当前每页的数据是5条

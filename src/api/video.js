@@ -24,6 +24,14 @@ const getCommentsByVideoId = (id) => {
   return get(`/comment/getCommentList/${id}`);
 };
 
+const recommend = (id, statut) => {
+  return put(`/feed/admin/recommend/${id}/${statut}`);
+};
+
+const deleteComment = (id) => {
+  return instance.delete(`/comment/deleteComment/${id}`);
+};
+
 export default {
   getVideoListPage,
   lock,
@@ -31,4 +39,6 @@ export default {
   getLikeThePeopleList,
   search,
   getCommentsByVideoId,
+  recommend,
+  deleteComment,
 };

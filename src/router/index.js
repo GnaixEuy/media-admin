@@ -25,6 +25,12 @@ export const menuRoutes = [
     component: () => import('../views/VideoManager.vue'),
   },
   {
+    path: 'recommendManager',
+    name: 'RecommendManager',
+    meta: { title: '推荐管理', icon: 'dashboard' },
+    component: () => import('../views/RecommendManager.vue'),
+  },
+  {
     path: 'about',
     name: 'About',
     meta: { title: '关于系统', icon: 'dashboard' },

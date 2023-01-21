@@ -19,8 +19,9 @@
                             <img :src="o.cover.uri" class="image">
                             <div style="padding: 14px;">
                                 <span>文案： {{ o.bio }}</span><br />
-                                <span>发布者： <el-button type="text" @click="showCreator(o)">{{ o.createdBy.userNickname
-}}</el-button>
+                                <span>发布者： <el-button type="text" @click="showCreator(o)">{{
+                                    o.createdBy.userNickname
+                                }}</el-button>
                                     <el-button type="text" @click="showComments(o)">
                                         评论</el-button>
                                 </span>
@@ -29,8 +30,8 @@
                                     <time class="time">{{ o.createdDateTime }}</time>
                                     <el-button type="text"
                                         @click="direction = 'rtl'; drawer = true; getLikeThePeopleList(o); ">查看点赞人员列表信息</el-button>
-                                    <el-button type="text"
-                                        @click="direction = 'btt'; drawer = true; getLikeThePeopleList(o); ">查看点赞趋势信息</el-button>
+                                    <!-- <el-button type="text"
+                                        @click="direction = 'btt'; drawer = true; getLikeThePeopleList(o); ">查看点赞趋势信息</el-button> -->
                                 </div>
                                 <div>
                                     <el-button v-if="o.locked" size="mini" type="success" @click="lockVideo(index, o)">
@@ -64,29 +65,32 @@
                         <el-table-column label="昵称" width="150">
                             <template slot-scope="scope">
                                 <img :src="scope.row.commenterHeaderUrl" width="40" height="40"
-                                    style="border-radius: 20px;" class="head_pic" /><span> {{ scope.row.commenterName
-}}</span>
+                                    style="border-radius: 20px;" class="head_pic" /><span> {{
+                                        scope.row.commenterName
+                                    }}</span>
                             </template>
                         </el-table-column>
                         <el-table-column property="commentContent" label="内容" width="200"></el-table-column>
                         <el-table-column property="dateTime" label="时间"></el-table-column>
+                        <el-table-column label="是否删除">
+                            <template slot-scope="scope">
+                                <el-popconfirm title="确定要删除该评论吗？" @confirm="deleteComment(scope.$index, scope.row)">
+                                    <el-button size="mini" type="danger" slot="reference">删除</el-button>
+                                </el-popconfirm>
+                            </template>
+                        </el-table-column>
                     </el-table>
                 </el-dialog>
                 <el-dialog v-if="item.createdBy != null" :title="item.createdBy.userNickname"
                     :visible.sync="userDialogTableVisible">
-
-
-
-
-
-
-
-                    <el-dialog width="30%" title="内层 Dialog" :visible.sync="userInnerDialogTableVisible" append-to-body>
-                    </el-dialog>
-                    <div slot="footer" class="dialog-footer">
-                        <el-button @click="userDialogTableVisible = false">取 消</el-button>
-                        <el-button type="primary" @click="userInnerDialogTableVisible = true">打开内层 Dialog</el-button>
+                    <div>
+                        <img :src="item.createdBy.portrait" width="40" height="40" style="border-radius: 20px;"
+                            class="head_pic" />
                     </div>
+                    <div>bio : {{ item.createdBy.bio }}</div>
+                    <div>创建时间：{{ item.createdBy.createdDateTime }}</div>
+                    <div>生日：{{ item.createdBy.userBirthday }}</div>
+                    <div>手机号：{{ item.createdBy.userPhone }}</div>
                 </el-dialog>
             </el-main>
             <el-footer>
@@ -163,7 +167,7 @@ export default {
             LikeThePeopleList: [],
             direction: "rtl",
             userDialogTableVisible: false,
-            userInnerDialogTableVisible: false,
+
             commentDialogTableVisible: false
         }
     },
@@ -174,7 +178,6 @@ export default {
         showComments(obj) {
             this.item = obj
             videoApi.getCommentsByVideoId(obj.id).then(res => {
-                console.log(res);
                 let { code, data } = res
                 if (code == 200) {
                     this.commentList = data.commentList
@@ -269,6 +272,22 @@ export default {
             this.pageSize = val;  // 修改页的大小
             this.getVideoListPage();       // 按新的pageNo和pageSize进行查询
         },
+        deleteComment(index, obj) {
+            console.log(index, obj);
+            videoApi.deleteComment(obj.id).then(res => {
+                console.log(res);
+                let { code, data } = res
+                if (code == 200) {
+                    this.$message.success(data)
+                    videoApi.getCommentsByVideoId(this.item.id).then(res => {
+                        let { code, data } = res
+                        if (code == 200) {
+                            this.commentList = data.commentList
+                        }
+                    })
+                }
+            })
+        }
     }
 }
 
