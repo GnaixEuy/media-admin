@@ -1,27 +1,27 @@
 import { get, post, put, instance } from './request';
 
 const getVideoListPage = (paging) => {
-  return get('/feed/admin/page', { params: paging });
+  return get('vlog', { params: paging });
 };
 
-const lock = (id) => {
-  return put(`/feed/admin/lock/${id}`);
+const privat = (id) => {
+  return put(`/vlog/privat/${id}`);
 };
 
 const remove = (id) => {
-  return instance.delete(`/feed/admin/delete/${id}`, {});
+  return instance.delete(`/vlog/${id}`, {});
 };
 
 const getLikeThePeopleList = (id) => {
-  return get(`/like/feed/likeThePeopleListByFeedId/${id}`);
+  return get(`/like/${id}`);
 };
 
 const search = (type, input) => {
-  return get(`/feed/admin/search/${type}/${input}`);
+  return get(`/vlog/search/${input}`);
 };
 
 const getCommentsByVideoId = (id) => {
-  return get(`/comment/getCommentList/${id}`);
+  return get(`/comment/${id}`);
 };
 
 const recommend = (id, statut) => {
@@ -29,16 +29,21 @@ const recommend = (id, statut) => {
 };
 
 const deleteComment = (id) => {
-  return instance.delete(`/comment/deleteComment/${id}`);
+  return instance.delete(`/comment/${id}`);
+};
+
+const updateVlogRecommendNumber = (id, recommendNumber) => {
+  return put(`/vlog/recommend/${id}/${recommendNumber}`);
 };
 
 export default {
   getVideoListPage,
-  lock,
+  privat,
   remove,
   getLikeThePeopleList,
   search,
   getCommentsByVideoId,
   recommend,
   deleteComment,
+  updateVlogRecommendNumber,
 };

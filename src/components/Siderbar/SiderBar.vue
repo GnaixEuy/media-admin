@@ -13,10 +13,6 @@
                         <i class="el-icon-video-camera"></i>
                         <span slot="title">视屏管理</span>
                     </el-menu-item>
-                    <el-menu-item index="RecommendManager">
-                        <i class="el-icon-s-flag"></i>
-                        <span slot="title">推荐管理</span>
-                    </el-menu-item>
                 </el-menu-item-group>
             </el-submenu>
 

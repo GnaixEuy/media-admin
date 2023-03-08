@@ -5,8 +5,8 @@
         <div>
             <el-dropdown>
                 <span class="adminMessage">
-                    <el-avatar :size=40 :src="user.portrait"></el-avatar>
-                    <span class="adminName">{{ nickname }}</span>
+                    <image class="el-avatar" src="@/assets/logo.png"></image>
+                    <span class="adminName">管理员</span>
                 </span>
                 <el-dropdown-menu slot="dropdown">
                     <!-- <el-dropdown-item>个人中心</el-dropdown-item> -->
@@ -23,7 +23,7 @@ export default {
     name: 'Header',
     data() {
         return {
-            removeToken
+            removeToken,
         }
     },
     methods: {
@@ -50,15 +50,15 @@ export default {
     padding: 0 20px;
     justify-content: space-between;
 
-    .adminMessage {
-        padding: 0 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    // .adminMessage {
+    //     padding: 0 20px;
+    //     display: flex;
+    //     justify-content: center;
+    //     align-items: center;
 
-        .adminName {
-            padding: 0 10px;
-        }
-    }
+    //     .adminName {
+    //         padding: 0 10px;
+    //     }
+    // }
 }
 </style>

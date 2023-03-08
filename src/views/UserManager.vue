@@ -35,13 +35,13 @@
                     </el-table-column>
                     <el-table-column prop="city" label="城市" width="60">
                     </el-table-column>
-                    <el-table-column prop="description" label="个人简介" width="75">
+                    <el-table-column prop="description" label="个人简介">
                     </el-table-column>
-                    <el-table-column prop="profession" label="职业" width="60">
+                    <el-table-column prop="profession" label="职业">
                     </el-table-column>
                     <el-table-column prop="createdTime" sortable label="创建时间">
                     </el-table-column>
-                    <el-table-column label="是否封禁">
+                    <el-table-column label="是否封禁" style="text-align: center; align-items: center;">
                         <template slot-scope="scope">
                             <el-popconfirm title="确定要删除该用户吗？" @confirm="deleteUser(scope.row)">
                                 <el-button size="mini" type="danger" slot="reference">删除</el-button>
@@ -114,7 +114,8 @@ export default {
             }).then(res => {
                 let { code, message, data } = res;
                 if (code == 200) {
-                    console.log(data);
+                    this.pageNo = data.pages
+                    this.pageSize = data.size
                     this.allUserList = data.records
                     this.totalCount = data.total
                 } else {
