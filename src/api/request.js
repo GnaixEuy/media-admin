@@ -2,7 +2,8 @@ import axios from 'axios';
 import store from '../store';
 import { Message } from 'element-ui';
 
-const baseURL = 'http://localhost:16666/api';
+// const baseURL = 'http://localhost:16666/api';
+const baseURL = 'http://localhost:8007';
 const tokenPrefix = 'Bearer ';
 const instance = axios.create({
   baseURL,

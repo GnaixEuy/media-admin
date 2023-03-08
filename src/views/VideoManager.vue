@@ -60,7 +60,7 @@
                     </el-drawer>
                 </el-row>
 
-                <el-dialog title="收货地址" :visible.sync="commentDialogTableVisible">
+                <el-dialog title="评论信息" :visible.sync="commentDialogTableVisible">
                     <el-table :data="commentList">
                         <el-table-column label="昵称" width="150">
                             <template slot-scope="scope">

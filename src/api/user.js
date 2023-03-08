@@ -1,7 +1,7 @@
 import { get, post, put, instance } from './request';
 
 const search = (paging) => {
-  return get('/user/', { params: paging });
+  return get('/user', { params: paging });
 };
 
 const me = () => {

@@ -6,8 +6,8 @@ const whiteList = ['/login', '/403', '/404'];
 
 router.beforeEach(async (to, from, next) => {
   const hasToken = getToken();
-
-  if (hasToken) {
+  //hastoken
+  if (true) {
     if (to.path === '/login') {
       next({ path: '/' });
     } else {
